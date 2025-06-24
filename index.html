@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Random Repository</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>GitHub Repository Finder</h1>
+        <div class="language-select">
+            <label for="language-dropdown">Select a language:</label>
+            <select id="language-dropdown"></select>
+            <button id="refresh" style="display:none;">Refresh</button>
+        </div>
+        <div class="error-handling">
+            <div id="empty-state">Select a language:</div>
+            <div id="loading-state">Loading, please wait...</div>
+            <div id="error-meesage" style="display: none;">Error fetching repositories
+                <button id="retry" style="display: none;">Click to retry</button>
+            </div>
+        </div>
+        <div id="display-repository"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
