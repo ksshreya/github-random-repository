@@ -43,6 +43,7 @@ function showState(state) {
 
     if (state === 'empty') {
         if (emptyState) emptyState.style.display = 'block';
+        if (languageSelect) languageSelect.value = '';
     } else if (state === 'loading') {
         if (loadingState) loadingState.style.display = 'block';
         if (repositoryDisplay) repositoryDisplay.innerHTML = '';
@@ -63,7 +64,9 @@ async function fetchRandomRepository(language) {
 
     showState('loading');
 
-    const url = `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc`;
+    const url = `https://api.github.com/search/repositories?q=language:${encodeURIComponent(language)}&sort=stars&order=desc`;
+
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
     try {
         const response = await fetch(url);
@@ -86,7 +89,10 @@ async function fetchRandomRepository(language) {
             } else {
                 errorState.innerHTML = `No repositories found for "${language}". Try another language or retry. <button id="retry" style="display:none;">Click to retry</button>`;
                 const newRetryButton = errorState.querySelector('#retry');
-                if (newRetryButton) newRetryButton.style.display = 'block';
+                if (newRetryButton) {
+                    newRetryButton.style.display = 'block';
+                    newRetryButton.onclick = () => fetchRandomRepository(language);
+                }
             }
             showState('error');
         }
@@ -97,7 +103,10 @@ async function fetchRandomRepository(language) {
         } else {
             errorState.innerHTML = `Failed to fetch repository. Error: ${error.message}. Please try again. <button id="retry" style="display:none;">Click to retry</button>`;
             const newRetryButton = errorState.querySelector('#retry');
-            if (newRetryButton) newRetryButton.style.display = 'block';
+            if (newRetryButton) {
+                newRetryButton.style.display = 'block';
+                newRetryButton.onclick = () => fetchRandomRepository(language);
+            }
         }
         showState('error');
     }
@@ -120,17 +129,12 @@ function updateRepositoryDisplay(repo) {
                 <span>${repo.open_issues_count} Open Issues</span>
             </div>
 
-            <p><strong>Language:</strong> <span class="language-dot" data-language="${repo.language || 'N/A'}"></span> ${repo.language || 'N/A'}</p>
+            <p><strong>Language:</strong> <span class="language-dot" data-language="${repo.language ? repo.language.toLowerCase() : 'n/a'}"></span> ${repo.language || 'N/A'}</p>
         </div>
     `;
 }
 
 languageSelect.addEventListener('change', () => {
-    const selectedLanguage = languageSelect.value;
-    fetchRandomRepository(selectedLanguage);
-});
-
-refreshButton.addEventListener('click', () => {
     const selectedLanguage = languageSelect.value;
     if (selectedLanguage) {
         fetchRandomRepository(selectedLanguage);
@@ -139,10 +143,21 @@ refreshButton.addEventListener('click', () => {
     }
 });
 
+refreshButton.addEventListener('click', () => {
+    const currentLanguage = languageSelect.value;
+
+    if (currentLanguage) {
+        fetchRandomRepository(currentLanguage);
+    } else {
+        showState('empty');
+    }
+});
+
 retryButton.addEventListener('click', () => {
-    const selectedLanguage = languageSelect.value;
-    if (selectedLanguage) {
-        fetchRandomRepository(selectedLanguage);
+    const currentLanguage = languageSelect.value;
+
+    if (currentLanguage) {
+        fetchRandomRepository(currentLanguage);
     } else {
         showState('empty');
     }
