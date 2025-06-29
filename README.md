@@ -1,5 +1,5 @@
 GitHub Repository Finder
-A simple and interactive web application that allows users to discover random GitHub repositories by programming language or keyword search. It features dynamic content loading, robust error handling, and a smooth user experience. This project follows clear instructions from https://github.com/ksshreya/github-random-repository.git repository.
+A simple and interactive web application that allows users to discover random GitHub repositories by programming language or keyword search. It features dynamic content loading, robust error handling, and a smooth user experience. This project follows clear instructions from (https://roadmap.sh/projects/github-random-repo) repository.
 
 Features
 Language-based Filtering: Select from a predefined list of popular programming languages to find relevant repositories.
