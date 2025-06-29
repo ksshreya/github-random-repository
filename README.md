@@ -84,3 +84,10 @@ Observe the "Loading, please wait..." message for 5 seconds.
 Try performing several searches to trigger the simulated error.
 
 Use the "Refresh" or "Click to retry" buttons.
+
+<img width="1680" alt="Screenshot 2025-06-27 at 4 06 55 PM" src="https://github.com/user-attachments/assets/7b65045a-95bd-49fa-a9c8-b590bb6adb9a" />
+
+<img width="1680" alt="Screenshot 2025-06-27 at 4 06 48 PM" src="https://github.com/user-attachments/assets/34b0e8df-62a2-4de2-bea6-a558175c8870" />
+
+<img width="1680" alt="Screenshot 2025-06-27 at 4 01 15 PM" src="https://github.com/user-attachments/assets/8e6b54ef-2330-473a-83f3-e83b57eda074" />
+
