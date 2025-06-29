@@ -67,8 +67,8 @@ To run this project locally:
 
 1. Clone the repository (or download the source code):
 
-# git clone [<repository-url>](https://github.com/ksshreya/github-random-repository.git)
-# cd github-repo-finder
+git clone https://github.com/ksshreya/github-random-repository.git
+cd github-repo-finder
 
 2. Open index.html:
 Navigate to the directory where you saved the files and open index.html in your web browser.
